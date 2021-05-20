@@ -14,11 +14,12 @@
   color: #2c3e50;
 }
 
-html {
-  height: 100%;
+* {
+    margin: 0;
 }
-body {
-  min-height: 100%;
+html, body {
+    height: 100%;
+    width: 100%;
 }
 
 ::-webkit-scrollbar {

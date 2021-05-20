@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import axios from "axios";
 
-const SITE_PREFIX = "http://127.0.0.1:8000";
+// const SITE_PREFIX = "http://127.0.0.1:8000";
+const SITE_PREFIX = "http://ec2-35-154-206-196.ap-south-1.compute.amazonaws.com";
 
 export const actions = {
   getTopScrips: () =>

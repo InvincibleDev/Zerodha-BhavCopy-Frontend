@@ -11,13 +11,16 @@
           v-else
           hover
           bordered
+          borderless
           responsive
           :sticky-header="true"
           :per-page="perPage"
           :items="data"
           :current-page="currentPage"
           style="margin: 20px"
+          caption-top
         >
+        <template v-if="search_text == ''" #table-caption><span style="font-weight:bold" >Random Scrips. (Search Above for Specific Scrips)</span></template>
         </b-table>
         <button class="btn btn-lg btn-success" @click="csvExport">
           Export to CSV
