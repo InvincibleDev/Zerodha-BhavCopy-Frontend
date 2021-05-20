@@ -67,15 +67,16 @@ export default {
           this.loading = false;
           if (res.status) {
             this.data = [];
+            this.$emit('getScripNames', res.scrip_keys);
             for (var key in res.result) {
               this.data.push({
                 Name: key,
                 Code: res.result[key].code,
+                Date: res.result[key].date,
                 Open: res.result[key].open,
                 High: res.result[key].high,
                 Low: res.result[key].low,
                 Close: res.result[key].close,
-                Date: res.result[key].date,
               });
               this.top_data = this.data;
             }
@@ -88,8 +89,8 @@ export default {
           }
         })
         .catch((err) => {
+          console.log(err)
           this.loading = false;
-          console.log(err);
           this.$notify({
             group: "error",
             title: "Error",
@@ -102,7 +103,6 @@ export default {
         .dispatch("searchScrips", val)
         .then((res) => {
           this.loading = false;
-          console.log(res);
           if (res.status == 1) {
             this.data = [];
             let scrip_name = Object.keys(res.result)[0];
@@ -111,11 +111,11 @@ export default {
               this.data.push({
                 Name: scrip_name,
                 Code: value.code,
+                Date: value.date,
                 Open: value.open,
                 High: value.high,
                 Low: value.low,
                 Close: value.close,
-                Date: value.date,
               });
             }
           } else {

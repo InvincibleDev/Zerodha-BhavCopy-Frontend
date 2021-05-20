@@ -53,7 +53,13 @@
                       ref="search_string"
                       class="form-control form-control-lg form-control-borderless"
                       placeholder="Scrip Name (eg: HDFC, ICICILIQ)"
+                      list="scrip-list-id"
+                      debounce="500"
                     />
+                    <datalist id="scrip-list-id" style="width:100%">
+                      <option :key="name" v-for="name in scrip_names">{{ name }}</option>
+                    </datalist>
+                    
                   </div>
                   <!--end of col-->
                   <div class="col-auto">
@@ -81,7 +87,7 @@
         </div>
         <br /><br />
       </b-container>
-      <TopScrips :search_text="search_text" style="margin-top: 35px" />
+      <TopScrips :search_text="search_text" @getScripNames="getScripNames" style="margin-top: 35px" />
     </div>
     <Footer class="footer" />
   </div>
@@ -97,6 +103,7 @@ export default {
   data() {
     return {
       search_text: "",
+      scrip_names:[],
     };
   },
   components: {
@@ -104,6 +111,9 @@ export default {
     Footer,
   },
   methods: {
+   getScripNames (scrip_names) {
+      this.scrip_names = scrip_names
+    },
     clearSelection() {
       this.search_text = "";
       this.$refs.search_string.value = "";
